@@ -4,7 +4,7 @@ import useOrder from './hooks/useOrder';
 import { OrderContents } from './components/OrderContents';
 
 function App() {
-  const { order, addItem } = useOrder();
+  const { order, addItem, removeItem } = useOrder();
 
   return (
     <>
@@ -15,7 +15,7 @@ function App() {
       <main className="max-w-5xl mx-auto py-20 grid md:grid-cols-2">
         <div className='p-5'>
           <h2 className='text-2xl font-black'>Menú</h2>
-          <div className='space-y-2 mt-1'>
+          <div className='space-y-3 mt-5'>
             {
               menuItems.map(item => (
                 <MenuItem
@@ -32,6 +32,7 @@ function App() {
         <div className='border border-dashed border-slate-400 p-5 rounded-lg space-y-3'>
           <OrderContents 
             order={order}
+            removeItem={removeItem}
           />
         </div>
       </main>
