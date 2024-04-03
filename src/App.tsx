@@ -3,7 +3,7 @@ import { menuItems } from './database/db';
 import useOrder from './hooks/useOrder';
 
 function App() {
-  const { order, addItem, removeItem } = useOrder();
+  const { order, tip, setTip, addItem, removeItem } = useOrder();
 
   return (
     <>
@@ -34,10 +34,13 @@ function App() {
             removeItem={removeItem}
           />
 
-          <PercentageOrder />
+          <PercentageOrder
+            setTip={setTip}
+          />
           
           <OrderTotals 
             order={order}
+            tip={tip}
           />
         </div>
       </main>

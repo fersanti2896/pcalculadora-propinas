@@ -1,3 +1,8 @@
+import { Dispatch, SetStateAction } from 'react'
+
+type PercentageOrderProp = {
+    setTip: Dispatch<SetStateAction<number>>
+}
 
 const tipOptions = [
     {
@@ -17,7 +22,7 @@ const tipOptions = [
     },
 ]
 
-export const PercentageOrder = () => {
+export const PercentageOrder = ({ setTip }: PercentageOrderProp) => {
     return (
         <>
             <h3 className='font-black text-2xl'>Propina</h3>
@@ -32,6 +37,7 @@ export const PercentageOrder = () => {
                                    type="radio"
                                    name="tip"
                                    value={tip.value}
+                                   onChange={e => setTip(+e.target.value)}
                             />
                             <label htmlFor={tip.id}>{tip.label}</label>
                         </div>
