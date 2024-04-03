@@ -3,7 +3,7 @@ import { menuItems } from './database/db';
 import useOrder from './hooks/useOrder';
 
 function App() {
-  const { order, tip, setTip, addItem, removeItem } = useOrder();
+  const { order, tip, setTip, addItem, removeItem, placeOrder } = useOrder();
 
   return (
     <>
@@ -29,19 +29,30 @@ function App() {
         </div>
 
         <div className='border border-dashed border-slate-400 p-5 rounded-lg space-y-3'>
-          <OrderContents
-            order={order}
-            removeItem={removeItem}
-          />
+          {
+            order.length > 0 ? (
+              <>
+                <OrderContents
+                  order={order}
+                  removeItem={removeItem}
+                />
 
-          <PercentageOrder
-            setTip={setTip}
-          />
-          
-          <OrderTotals 
-            order={order}
-            tip={tip}
-          />
+                <PercentageOrder
+                  setTip={setTip}
+                  tip={tip}
+                />
+
+                <OrderTotals
+                  order={order}
+                  tip={tip}
+                  placeOrder={placeOrder}
+                />
+              </>
+            ) : (
+              <p className="text-center">La orden está vacía</p>
+            )
+          }
+
         </div>
       </main>
     </>

@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from 'react'
 
 type PercentageOrderProp = {
-    setTip: Dispatch<SetStateAction<number>>
+    setTip: Dispatch<SetStateAction<number>>,
+    tip: number
 }
 
 const tipOptions = [
@@ -22,24 +23,25 @@ const tipOptions = [
     },
 ]
 
-export const PercentageOrder = ({ setTip }: PercentageOrderProp) => {
+export const PercentageOrder = ({ setTip, tip }: PercentageOrderProp) => {
     return (
         <>
             <h3 className='font-black text-2xl'>Propina</h3>
 
             <form>
                 {
-                    tipOptions.map(tip => (
-                        <div key={tip.id}
+                    tipOptions.map(tipOptions => (
+                        <div key={tipOptions.id}
                              className='flex gap-2'
                         >
-                            <input id={tip.id} 
+                            <input id={tipOptions.id} 
                                    type="radio"
                                    name="tip"
-                                   value={tip.value}
+                                   value={tipOptions.value}
                                    onChange={e => setTip(+e.target.value)}
+                                   checked={tipOptions.value === tip}
                             />
-                            <label htmlFor={tip.id}>{tip.label}</label>
+                            <label htmlFor={tipOptions.id}>{tipOptions.label}</label>
                         </div>
                     ))
                 }
