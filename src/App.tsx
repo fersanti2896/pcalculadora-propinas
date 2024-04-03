@@ -1,8 +1,6 @@
+import { MenuItem, OrderContents, OrderTotals, PercentageOrder } from './components';
 import { menuItems } from './database/db';
-import { MenuItem } from './components/MenuItem';
 import useOrder from './hooks/useOrder';
-import { OrderContents } from './components/OrderContents';
-import { OrderTotals } from './components/OrderTotals';
 
 function App() {
   const { order, addItem, removeItem } = useOrder();
@@ -31,11 +29,13 @@ function App() {
         </div>
 
         <div className='border border-dashed border-slate-400 p-5 rounded-lg space-y-3'>
-          <OrderContents 
+          <OrderContents
             order={order}
             removeItem={removeItem}
           />
 
+          <PercentageOrder />
+          
           <OrderTotals 
             order={order}
           />
